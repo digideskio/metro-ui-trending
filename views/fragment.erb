@@ -4,8 +4,8 @@
 <aside class="tm2 widget clearfix">
 	<h2 class="tm2-header">What's Trending</h2>
 	<ol>
-		<% data["posts"].take(5).each_with_index do |post, i| %>
-			<li class="clearfix tm2-item-<%= i %> news" data-score="<%= post['metrics']['score'] %>">
+		<% data["posts"].take(5).each.with_index(1) do |post, i| %>
+			<li class="clearfix tm2-item-<%= (i) %> news" data-score="<%= post['metrics']['score'] %>">
 				<a href="<%= post['URL'] %>" data-track="trending">
 					<div class="tm2-image-container">
 						<% image = get_image(post, layout) %>
@@ -21,4 +21,10 @@
 		<% end %>
 	</ol>
 </aside>
-<!-- TODO: Trivial JS -->
+<script>
+	if (typeof $ !== "undefined") {
+		(function($){
+			$('.tm2').after('<div class="hello-world" />');
+		})($);
+	}
+</script>

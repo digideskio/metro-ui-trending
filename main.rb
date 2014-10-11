@@ -3,7 +3,7 @@ require 'open-uri'
 require 'json'
 require './image'
 
-API_BASE = 'http://api.metro.co.uk/news-feed/'
+API_BASE = 'http://api.metro.co.uk/news-feed/?path=home&number=5&post-type=post&sort-by=trending'
 
 def process_fragment()
 	json_str = open(API_BASE) { |io| io.read }
