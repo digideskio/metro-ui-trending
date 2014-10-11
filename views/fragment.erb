@@ -1,0 +1,24 @@
+<style>
+	<%= get_file_content('views/widget.css') %>
+</style>
+<aside class="tm2 widget clearfix">
+	<h2 class="tm2-header">What's Trending</h2>
+	<ol>
+		<% data["posts"].take(5).each_with_index do |post, i| %>
+			<li class="clearfix tm2-item-<%= i %> news" data-score="<%= post['metrics']['score'] %>">
+				<a href="<%= post['URL'] %>" data-track="trending">
+					<div class="tm2-image-container">
+						<% image = get_image(post, layout) %>
+						<% unless image.nil? %>
+							<img src="<%= image.url %>" class="tm2-image" title="<%= esc_quotes(post['short_title']) %>" />
+						<% end %>
+					</div>
+					<div class="tm2-title-container">
+						<h3 class="tm2-title"><span><%= post['title'] %></span></h3>
+					</div>
+				</a>
+			</li>
+		<% end %>
+	</ol>
+</aside>
+<!-- TODO: Trivial JS -->
