@@ -6,6 +6,8 @@ require './image'
 API_BASE = 'http://api.metro.co.uk/news-feed/?path=home&number=5&post-type=post&sort-by=trending'
 
 def process_fragment()
+	headers 'Cache-Control' => 'max-age=60'
+	headers 'Access-Control-Allow-Origin' => '*'
 	json_str = open(API_BASE) { |io| io.read }
 	data = JSON.parse(json_str)
 	erb :fragment, :locals => {:data => data, :layout => params['layout']}
